@@ -1,8 +1,11 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import GymFeatures from './GymFeatures';
+import { X } from 'lucide-react';
 
 const GymeCard = ({ keys }) => {
   const { billingCycle, currency, features, id, name, price } = keys;
+  const [showModal, setShowModal] = useState(false);
 
   let cardBg = '';
   let border = '';
@@ -40,7 +43,7 @@ const GymeCard = ({ keys }) => {
 
   return (
     <div
-      className={`border-2  ${border} ${cardBg} p-5 mt-5  rounded-xl flex flex-col h-full `}
+      className={`border-2 ${border} ${cardBg} p-5 mt-5 rounded-xl flex flex-col h-full`}
     >
       <div className={`font-bold text-3xl ${titleColor}`}>{name}</div>
 
@@ -58,12 +61,50 @@ const GymeCard = ({ keys }) => {
         ))}
       </div>
 
-    
       <div className="">
-        <button className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 active:scale-95 transition-transform duration-150 cursor-pointer">
+        <button
+          className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 active:scale-95 transition-transform duration-150 cursor-pointer"
+          onClick={() => setShowModal(true)}
+        >
           Subscribe
         </button>
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center  bg-opacity-50 z-50">
+          <div className="bg-gray-400 p-5 rounded-xl w-96 relative">
+            <button
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 font-bold text-lg"
+              onClick={() => setShowModal(false)}
+            > 
+              <div className='text-red-700 cursor-pointer'><X className=''></X></div>
+           
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4">Subscribe to {name}</h2>
+
+            <form className="space-y-3">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full border border-gray-300 bg-white p-2 rounded-lg"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full border border-gray-300 bg-white p-2 rounded-lg"
+              />
+              <div className="text-2xl font-bold">Total :{price}</div>
+              <button
+                type="submit"
+                className="w-full cursor-pointer bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
