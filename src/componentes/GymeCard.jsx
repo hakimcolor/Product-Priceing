@@ -1,18 +1,65 @@
-import React from 'react'
+import React from 'react';
 import GymFeatures from './GymFeatures';
 
 const GymeCard = ({ keys }) => {
-  const {billingCycle,currency,features,id,name,price}=keys
-  return <div
-    className='border-5  border-[#d1d5db] mt-5 bg-[#f9fafb] p-2 rounded-xl '>
+  const { billingCycle, currency, features, id, name, price } = keys;
+
+  let cardBg = '';
+  let border = '';
+  let titleColor = '';
+  let priceColor = '';
+  let cycleColor = '';
+  let featuresTitleColor = '';
+
+  if (id === 'basic') {
+    cardBg = 'bg-gray-50';
+    border = 'border-gray-300';
+    titleColor = 'text-gray-900';
+    priceColor = 'text-green-600';
+    cycleColor = 'text-gray-600';
+    featuresTitleColor = 'text-green-700';
+  }
+
+  if (id === 'standard') {
+    cardBg = 'bg-white';
+    border = 'border-blue-500';
+    titleColor = 'text-blue-900';
+    priceColor = 'text-blue-600';
+    cycleColor = 'text-gray-500';
+    featuresTitleColor = 'text-blue-700';
+  }
+
+  if (id === 'premium') {
+    cardBg = 'bg-gray-900';
+    border = 'border-yellow-400';
+    titleColor = 'text-yellow-400';
+    priceColor = 'text-yellow-300';
+    cycleColor = 'text-gray-300';
+    featuresTitleColor = 'text-yellow-500';
+  }
+
+  return (
+    <div className={`border-2 ${border} ${cardBg} p-5 mt-5 rounded-xl`}>
+  
+      <div className={`font-bold text-3xl ${titleColor}`}>{name}</div>
+
     
-  <div className='font-bold text-[40px] text-[#111827] '>{name}</div>
-    <div className='font-bold text-2xl text-[#16a34a] mt-5'>Price: $ { price}</div>
-    <div className='text-2xl font-bold text-yellow-500 mt-5'>Features</div>
-    <div className='mt-2'>
-      {features.map((k,index) => <GymFeatures k={k} key={index}></GymFeatures>)}
+      <div className={`font-bold text-2xl ${priceColor} mt-3`}>
+        ${price} <span className={`${cycleColor}`}>/{billingCycle}</span>
+      </div>
+
+   
+      <div className={`text-xl font-semibold mt-5 ${featuresTitleColor}`}>
+        Features
+      </div>
+
+      <div className="mt-2 space-y-2">
+        {features.map((k, index) => (
+          <GymFeatures k={k} key={index} />
+        ))}
+      </div>
     </div>
-  </div>;
+  );
 };
 
-export default GymeCard
+export default GymeCard;
