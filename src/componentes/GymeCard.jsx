@@ -39,24 +39,30 @@ const GymeCard = ({ keys }) => {
   }
 
   return (
-    <div className={`border-2 ${border} ${cardBg} p-5 mt-5 rounded-xl`}>
-  
+    <div
+      className={`border-2  ${border} ${cardBg} p-5 mt-5  rounded-xl flex flex-col h-full `}
+    >
       <div className={`font-bold text-3xl ${titleColor}`}>{name}</div>
 
-    
       <div className={`font-bold text-2xl ${priceColor} mt-3`}>
         ${price} <span className={`${cycleColor}`}>/{billingCycle}</span>
       </div>
 
-   
       <div className={`text-xl font-semibold mt-5 ${featuresTitleColor}`}>
         Features
       </div>
 
-      <div className="mt-2 space-y-2">
+      <div className="mt-2 space-y-2 flex-grow">
         {features.map((k, index) => (
           <GymFeatures k={k} key={index} />
         ))}
+      </div>
+
+    
+      <div className="">
+        <button className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 active:scale-95 transition-transform duration-150">
+          Subscribe
+        </button>
       </div>
     </div>
   );

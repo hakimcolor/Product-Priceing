@@ -2,11 +2,9 @@ import React from 'react';
 
 const Navdata = ({ route }) => {
   return (
-    <div>
-      <li className='hover:bg-white md:bg-transparent px-2 md:px-0 rounded-md md:rounded-none cursor-pointer'>
-        <a href={route.path}>{route.name}</a>
-      </li>
-    </div>
+    <li className="px-3 py-2 md:px-0 md:py-0 rounded-md md:rounded-none cursor-pointer transition-all duration-300 hover:text-cyan-600 hover:underline">
+      <a href={route.path}>{route.name}</a>
+    </li>
   );
 };
 
