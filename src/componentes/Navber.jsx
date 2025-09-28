@@ -20,31 +20,31 @@ const Navber = () => {
   return (
     <nav className="w-full fixed top-0 left-0 bg-white shadow-md z-50">
       <div className="flex justify-between items-center px-6 md:px-20 py-4">
-        {/* Logo */}
-        <div className="flex items-center gap-4">
+    
+        <div className="flex items-center   gap-[120px] xl:gap-0">
           <button
             onClick={handleClick}
             className="md:hidden focus:outline-none"
           >
             {open ? <X size={28} /> : <Menu size={28} />}
           </button>
-          <h1 className="font-bold text-2xl text-cyan-600">MyLogo</h1>
+          <h1 className="font-bold text-2xl text-cyan-600 ">MyLogo</h1>
         </div>
 
-        {/* Desktop Navigation */}
+     
         <ul className="hidden md:flex md:items-center md:gap-8">
           {navgationData.map((route) => (
             <Navdata key={route.id} route={route} />
           ))}
         </ul>
 
-        {/* Desktop CTA Button */}
+      
         <button className="hidden md:block bg-cyan-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-cyan-700 transition-colors duration-300">
           Get Started
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      
       <div
         className={`md:hidden bg-white shadow-md absolute top-full left-0 w-full transition-all duration-300 ease-in-out ${
           open
